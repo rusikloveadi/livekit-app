@@ -1,0 +1,9 @@
+# На Vercel нужны только public/ (страницы), api/ (функция с пропусками) и server/token.js
+.env
+.env.*
+!.env.example
+.claude
+test
+test-e2e
+README.md
+CLAUDE.md
