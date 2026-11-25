@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+  <meta name="theme-color" content="#090b10">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex">
+  <title>Комната — Киновечер</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/room.css">
+</head>
+<body class="room">
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3.5 20 12 6 20.5" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-screen" viewBox="0 0 24 24"><path d="M13 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m17 8 5-5"/><path d="M17 3h5v5"/></symbol>
+    <symbol id="i-screen-off" viewBox="0 0 24 24"><path d="M13 3H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="m22 3-5 5"/><path d="m17 3 5 5"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+    <symbol id="i-exit" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+    <symbol id="i-fullscreen" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="i-pip" viewBox="0 0 24 24"><path d="M21 9V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v10c0 1.1.9 2 2 2h4"/><rect width="10" height="7" x="12" y="13" rx="2"/></symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></symbol>
+    <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></symbol>
+  </svg>
+
+  <div class="app">
+    <header class="bar">
+      <a class="brand" href="/" aria-label="Киновечер — на главную">
+        <span class="brand-mark"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></span>
+        <span class="brand-name">Киновечер</span>
+      </a>
+
+      <div class="bar-center">
+        <button class="chip-btn" id="invite-btn" type="button" title="Скопировать ссылку-приглашение">
+          <svg class="ico" aria-hidden="true"><use href="#i-link"/></svg>
+          <span class="code" id="room-code"></span>
+          <span class="chip-btn-label">Пригласить</span>
+        </button>
+      </div>
+
+      <div class="bar-right">
+        <div class="conn" id="conn" data-state="connecting" role="status">
+          <span class="dot"></span><span class="conn-text" id="conn-text">Подключаемся…</span>
+        </div>
+        <button class="btn btn-primary" id="share-btn" type="button">
+          <svg class="ico" aria-hidden="true"><use id="share-btn-icon" href="#i-screen"/></svg>
+          <span class="btn-label" id="share-btn-text">Показать экран</span>
+        </button>
+        <button class="btn btn-ghost btn-icon" id="leave-btn" type="button" title="Выйти из комнаты" aria-label="Выйти из комнаты">
+          <svg class="ico" aria-hidden="true"><use href="#i-exit"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage" id="stage" data-mode="idle" data-link="connecting" aria-label="Экран">
+
+        <!-- Никто не показывает экран -->
+        <div class="stage-panel stage-idle">
+          <div class="panel-inner">
+            <div class="idle-ring"><svg class="ico" aria-hidden="true"><use href="#i-screen"/></svg></div>
+            <h2>Пока никто не показывает экран</h2>
+            <p class="for-presenter">Открой фильм или видео в соседней вкладке, нажми «Показать экран» — и все в этой комнате увидят его.</p>
+            <p class="for-viewer">Как только кто-то из друзей начнёт показ, картинка появится здесь сама.</p>
+            <ol class="steps for-presenter">
+              <li>Открой видео в <b>отдельной вкладке</b> браузера и разверни плеер на весь экран — друзья увидят только фильм, без меню и рекламы сайта.</li>
+              <li>Нажми «Показать экран», выбери <b>эту вкладку</b> и оставь включённой галочку звука — тогда звук пойдёт сам.</li>
+              <li>Если выбрать «Весь экран», включи галочку про <b>системный звук</b>. Отдельное окно передаётся <b>без звука</b>.</li>
+            </ol>
+            <button class="btn btn-primary btn-lg for-presenter" id="idle-share" type="button">
+              <svg class="ico" aria-hidden="true"><use href="#i-screen"/></svg>
+              Показать экран
+            </button>
+            <p class="idle-note" id="idle-unsupported" hidden>Показывать экран можно только с компьютера в Chrome или Edge (по https или на localhost). Смотреть чужой показ можно с любого устройства.</p>
+            <p class="idle-note">Сервисы с защитой от копирования (Netflix, Disney+ и т. п.) в показе могут быть чёрными — это ограничение браузера.</p>
+          </div>
+        </div>
+
+        <!-- Смотрим чужой экран -->
+        <div class="stage-watch">
+          <video id="video" playsinline autoplay></video>
+          <div class="watch-badge" id="watch-label"></div>
+          <div class="watch-status" id="watch-status">
+            <div class="spinner" aria-hidden="true"></div>
+            <p id="watch-status-text">Подключаемся к ведущему…</p>
+            <button class="btn" id="retry-btn" type="button" hidden>Переподключиться</button>
+          </div>
+          <button class="unmute" id="unmute-hint" type="button" hidden>
+            <svg class="ico" aria-hidden="true"><use href="#i-volume"/></svg>
+            Нажми, чтобы включить звук
+          </button>
+          <div class="controls" id="controls">
+            <button class="ctl" id="mute-btn" type="button" aria-label="Выключить звук"><svg class="ico" aria-hidden="true"><use id="mute-icon" href="#i-volume"/></svg></button>
+            <input class="volume" id="volume" type="range" min="0" max="1" step="0.02" value="1" aria-label="Громкость">
+            <span class="spacer"></span>
+            <button class="ctl" id="pip-btn" type="button" aria-label="Картинка в картинке" title="Картинка в картинке"><svg class="ico" aria-hidden="true"><use href="#i-pip"/></svg></button>
+            <button class="ctl" id="fs-btn" type="button" aria-label="Во весь экран" title="Во весь экран"><svg class="ico" aria-hidden="true"><use href="#i-fullscreen"/></svg></button>
+          </div>
+        </div>
+
+        <!-- Мы показываем экран: большая копия того, что видят друзья -->
+        <div class="stage-present">
+          <video id="preview" muted playsinline autoplay></video>
+          <div class="preview-off" id="preview-off" hidden>
+            <p>Ты показываешь весь экран, поэтому копия здесь получилась бы «зеркалом в зеркале». Фильм смотри прямо в окне или вкладке, которую показываешь.</p>
+            <button class="btn" id="preview-on" type="button">Всё равно показать копию</button>
+          </div>
+          <div class="watch-badge" id="present-badge">Ты показываешь экран</div>
+          <div class="present-actions">
+            <button class="btn btn-sm" id="settings-btn" type="button" aria-expanded="false" aria-controls="present-panel" title="Качество, зрители, копия экрана">
+              <svg class="ico" aria-hidden="true"><use href="#i-sliders"/></svg><span class="btn-label">Настройки показа</span>
+            </button>
+            <button class="btn btn-sm btn-danger" id="stop-btn" type="button">
+              <svg class="ico" aria-hidden="true"><use href="#i-screen-off"/></svg><span class="btn-label">Остановить показ</span>
+            </button>
+          </div>
+          <div class="note note-warn present-warning" id="no-audio" hidden>
+            <b>Звук не передаётся.</b> Друзья увидят картинку, но не услышат фильм. Останови показ и начни заново: выбери вкладку и оставь галочку звука (для «Весь экран» — галочку системного звука). Окно приложения звук не передаёт.
+          </div>
+          <div class="present-hint" id="present-hint" hidden>Пока никого нет — нажми «Пригласить» сверху и отправь ссылку друзьям.</div>
+          <div class="present-panel" id="present-panel" hidden>
+            <div class="field">
+              <label for="quality">Качество</label>
+              <select class="input" id="quality"></select>
+            </div>
+            <div class="field">
+              <label for="hint">Что показываешь</label>
+              <select class="input" id="hint">
+                <option value="motion">Фильмы и видео — плавность</option>
+                <option value="detail">Текст и слайды — чёткость</option>
+              </select>
+            </div>
+            <div class="meter" id="meter" role="status"></div>
+            <ul class="viewers" id="viewers"></ul>
+            <button class="btn btn-sm" id="preview-toggle" type="button">Скрыть копию экрана</button>
+            <p class="panel-tip">Совет: разверни плеер на вкладке с фильмом на весь экран — друзья увидят только видео, без меню и рекламы сайта.</p>
+          </div>
+          <div class="controls">
+            <span class="spacer"></span>
+            <button class="ctl" id="pip-btn-present" type="button" aria-label="Картинка в картинке" title="Картинка в картинке"><svg class="ico" aria-hidden="true"><use href="#i-pip"/></svg></button>
+            <button class="ctl" id="fs-btn-present" type="button" aria-label="Во весь экран" title="Во весь экран"><svg class="ico" aria-hidden="true"><use href="#i-fullscreen"/></svg></button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="card people">
+          <h3 class="card-title"><svg class="ico" aria-hidden="true"><use href="#i-users"/></svg>В комнате<span class="count" id="people-count">0</span></h3>
+          <ul id="people"></ul>
+        </section>
+
+        <section class="card chat">
+          <h3 class="card-title chat-title"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg>Чат</h3>
+          <div class="chat-list" id="chat-list" aria-live="polite">
+            <p class="chat-empty" id="chat-empty">Здесь будет общий чат. Напиши первым!</p>
+          </div>
+          <form class="chat-form" id="chat-form" autocomplete="off">
+            <input class="input" id="chat-input" type="text" maxlength="500" placeholder="Написать сообщение…" aria-label="Сообщение">
+            <button class="btn btn-primary btn-icon" id="chat-send" type="submit" aria-label="Отправить"><svg class="ico" aria-hidden="true"><use href="#i-send"/></svg></button>
+          </form>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <div class="modal" id="name-modal" hidden>
+    <form class="modal-card" id="name-form" autocomplete="off">
+      <h2 id="name-title">Как тебя зовут?</h2>
+      <p id="name-text">Это имя увидят друзья в списке и в чате.</p>
+      <input class="input" id="name-input" type="text" maxlength="24" placeholder="Например, Аня" aria-label="Имя" required>
+      <div class="modal-actions">
+        <button class="btn" id="name-cancel" type="button" hidden>Отмена</button>
+        <button class="btn btn-primary" type="submit">Продолжить</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal" id="fatal" hidden>
+    <div class="modal-card">
+      <h2 id="fatal-title">Не получилось войти</h2>
+      <p id="fatal-text"></p>
+      <div class="modal-actions">
+        <a class="btn" href="/">На главную</a>
+        <button class="btn btn-primary" id="fatal-retry" type="button" hidden>Подключиться снова</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+  <script type="module" src="/js/room.js"></script>
+</body>
+</html>
